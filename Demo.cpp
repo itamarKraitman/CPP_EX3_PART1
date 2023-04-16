@@ -9,11 +9,12 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+
+
 using namespace std;
-using namespace ariel;
 
 #include "sources/Fraction.hpp"
-
+using namespace ariel;
 
 
 int main() {

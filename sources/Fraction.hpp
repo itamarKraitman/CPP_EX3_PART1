@@ -5,13 +5,13 @@ namespace ariel
     class Fraction
     {
     private:
-        int nominator;
+        int numerator;
         int denominator;
 
 
     public:
-        Fraction(int nominator, int denominator);
-        int getNominator() const;
+        Fraction(int numerator, int denominator);
+        int getNumerator() const;
         int geDenominator() const;
 
         // overloading +,-,*,/,==,>,<,<=,>=,++,--,<<,>>
@@ -30,16 +30,21 @@ namespace ariel
         Fraction &operator++();
         Fraction &operator--();
 
-        friend bool operator+(double floatNumber, const Fraction &f1);
-        friend bool operator-(double floatNumber, const Fraction &f1);
-        friend bool operator*(double floatNumber, const Fraction &f1);
-        friend bool operator/(double floatNumber, const Fraction &f1);
+        friend Fraction operator+(double floatNumber, const Fraction &f1);
+        friend Fraction operator-(double floatNumber, const Fraction &f1);
+        friend Fraction operator*(double floatNumber, const Fraction &f1);
+        friend Fraction operator/(double floatNumber, const Fraction &f1);
 
         friend bool operator==(const Fraction &f1, const Fraction &f2);
         friend bool operator>=(const Fraction &f1, const Fraction &f2);
         friend bool operator<=(const Fraction &f1, const Fraction &f2);
         friend bool operator>(const Fraction &f1, const Fraction &f2);
         friend bool operator<(const Fraction &f1, const Fraction &f2);
+        friend bool operator==(double floatNumber, const Fraction &f1);
+        friend bool operator>=(double floatNumber, const Fraction &f1);
+        friend bool operator<=(double floatNumber, const Fraction &f1);
+        friend bool operator>(double floatNumber, const Fraction &f1);
+        friend bool operator<(double floatNumber, const Fraction &f1);
         friend bool operator==(const Fraction &f1, double floatNumber);
         friend bool operator>=(const Fraction &f1, double floatNumber);
         friend bool operator<=(const Fraction &f1, double floatNumber);

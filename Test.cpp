@@ -66,23 +66,31 @@ TEST_CASE("Methods do not throw errors- fraction with float")
     }
 }
 
-TEST_CASE("Logic operator do not throw erros")
+TEST_CASE("Logic operators work as expected- fraction and fraction")
 {
-    srand(time(NULL));
-
-    int nomiA = 0, denomiA = 0, nomiB = 0, denomiB = 0;
-    for (int i = 0; i < 1000; i++)
+    int nomiA = 0, denomiA = 0, nomiB = 0, denomiB = 0, nomiC = 0, denomiC = 0;
+    for (int i = 1; i < 1000; i++)
     {
-        nomiA = rand() % 2001 - 1000;
-        while (denomiA == 0 && denomiB == 0) // make sure I am not deviding by zero
-        {
-            denomiA = rand() % 2001 - 1000;
-            denomiB = rand() % 2001 - 1000;
-        }
-        Fraction a(nomiA, denomiA);
-        Fraction b(nomiB, denomiB);
-        CHECK_NOTHROW(a >= b);
-        CHECK_NOTHROW(a > 1.3);
+        Fraction a(i, i + 1);
+        Fraction b(i + 1, i + 2);
+        Fraction c(i + 2, i + 3);
+        // a > b > c always!
+        CHECK(a >= b);
+        CHECK(b >= c);
+        CHECK(c <= a);
+        CHECK(!(a == b));
+        CHECK(!(c == b));
+        Fraction d(i, i + 1); // same as a
+        CHECK(a == d);
+        CHECK(c < a);
+        CHECK(a > b);
     }
 }
 
+TEST_CASE("Logic operatos works as expectd- float number and fraction")
+{
+    Fraction a(1,2);
+    CHECK(a > 0.1);
+    CHECK(0.111 < a);
+    CHECK(a == 0.5);
+}
