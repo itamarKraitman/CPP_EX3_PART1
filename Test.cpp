@@ -17,7 +17,7 @@ TEST_CASE("Zero at the denominator- deviding by zero")
 
     for (int i = 0; i < 1000; i++)
     {
-        int num = rand() % 2001 - 1000;
+        int num = rand() % 2001 - 1000; // generate random number between -1000 to 1000
         CHECK_THROWS(Fraction(num, 0));
     }
 }
@@ -89,10 +89,12 @@ TEST_CASE("Logic operators work as expected- fraction and fraction")
 
 TEST_CASE("Logic operatos works as expectd- float number and fraction")
 {
-    Fraction a(1, 2);
+    Fraction a(1, 4);
     CHECK(a > 0.1);
     CHECK(0.111 < a);
-    CHECK(a == 0.5);
+    CHECK(a < Fraction(1, 2));
+    CHECK(a > Fraction(1, 5));
+    CHECK(a == 0.25);
 }
 
 TEST_CASE("Negative numerator and denominator")
