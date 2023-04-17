@@ -141,6 +141,7 @@ TEST_CASE("Binary operators works as excpected")
     CHECK(b == Fraction(-3,4));
 }
 
+
 TEST_CASE("<< operator works correctly")
 {
      std::ostringstream output;
