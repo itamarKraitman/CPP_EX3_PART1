@@ -94,3 +94,26 @@ TEST_CASE("Logic operatos works as expectd- float number and fraction")
     CHECK(0.111 < a);
     CHECK(a == 0.5);
 }
+
+TEST_CASE("Negative numerator and denominator")
+{
+    Fraction a(-5,-3); // -5/-3 == 5/3
+    Fraction b(5, 3);
+    CHECK(a == b);
+    Fraction c(-5,3); //-5/3
+    CHECK(a > c);
+    Fraction d(5,-3); // 5/-3 == -5/3 
+    CHECK(c == d);
+    CHECK(d < b);
+}
+
+TEST_CASE("reduced and unreduced fractions are equal")
+{
+    for (int i = 1; i < 1000; i++)
+    {
+        Fraction a(i, i + 1);
+        Fraction b(i * 3, (i + 1 ) * 3); 
+        CHECK(a == b); // 'a' and 'b' should be rqual! eg 1/2 == 2/4 == 3/6
+    }
+    
+}
