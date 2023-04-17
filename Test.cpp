@@ -136,24 +136,23 @@ TEST_CASE("Binary operators works as excpected")
     c = a + b - 1;
     CHECK(c == Fraction(-1, 4));
     a++;
-    CHECK(a == Fraction(3,2));
+    CHECK(a == Fraction(3, 2));
     b--;
-    CHECK(b == Fraction(-3,4));
+    CHECK(b == Fraction(-3, 4));
 }
-
 
 TEST_CASE("<< operator works correctly")
 {
-     std::ostringstream output;
-     Fraction a(1,2);
-     output << a;
-     CHECK(output.str() == "1/2");
-     output.clear();
-     Fraction b(1,-2);
-     output << b;
-     CHECK(output.str() == "1/-2");
-     output.clear();
-     Fraction c(-1,2);
-     output << c;
-     CHECK(output.str() == "-1/2");
+    std::ostringstream output;
+    Fraction a(1, 2);
+    output << a;
+    CHECK(output.str() == "1/2");
+    output.clear();
+    Fraction b(1, -2);
+    output << b;
+    CHECK(output.str() == "1/-2");
+    output.clear();
+    Fraction c(-1, 2);
+    output << c;
+    CHECK(output.str() == "-1/2");
 }
