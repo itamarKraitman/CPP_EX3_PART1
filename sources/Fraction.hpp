@@ -11,6 +11,7 @@ namespace ariel
 
     public:
         Fraction(int numerator, int denominator);
+        Fraction(double floatNumber);
         int getNumerator() const;
         int geDenominator() const;
 

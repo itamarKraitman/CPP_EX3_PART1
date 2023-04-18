@@ -22,6 +22,16 @@ TEST_CASE("Zero at the denominator- deviding by zero")
     }
 }
 
+TEST_CASE("Float number as input")
+{
+    Fraction a(1.5);
+    CHECK_EQ(a, 1.5);
+    Fraction b(3,2);
+    CHECK_EQ(a, b);
+    Fraction c(0.000001); // should be rounded up to 3 digits beyond decimal point (so, to 0) according README
+    CHECK_EQ(c, 0);
+}
+
 TEST_CASE("Methods do not throw errors- fraction with fraction")
 {
     srand(time(NULL));
@@ -133,6 +143,8 @@ TEST_CASE("Binary operators works as excpected")
     CHECK(c == Fraction(1, 8));
     c = 1.1 * a;
     CHECK(c == Fraction(8, 5));
+    c = a * 5.2365984; // calculation should be a * 5.236
+    CHECK(c == Fraction(1309, 500));
     c = b + 2.421;
     CHECK(c == Fraction(2671, 1000));
     c = a + b - 1;
@@ -158,3 +170,4 @@ TEST_CASE("<< operator works correctly")
     output << c;
     CHECK(output.str() == "-1/2");
 }
+
