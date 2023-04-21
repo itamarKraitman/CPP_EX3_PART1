@@ -2,29 +2,35 @@
 
 namespace ariel
 {
+
+    using namespace std;
+
     class Fraction
     {
     private:
         int numerator;
         int denominator;
+        int find_gcd() const;
+
 
 
     public:
         Fraction(int numerator, int denominator);
         Fraction(double floatNumber);
         int getNumerator() const;
-        int geDenominator() const;
+        int getDenominator() const;
+        void reduce_fraction();
 
         // overloading +,-,*,/,==,>,<,<=,>=,++,--,<<,>>
-        Fraction operator+(const Fraction &other);
-        Fraction operator-(const Fraction &other);
-        Fraction operator*(const Fraction &other);
-        Fraction operator/(const Fraction &other);
+        Fraction operator+(const Fraction &other) const;
+        Fraction operator-(const Fraction &other) const;
+        Fraction operator*(const Fraction &other) const;
+        Fraction operator/(const Fraction &other) const;
 
-        Fraction operator*(double floatNumber);
-        Fraction operator+(double floatNumber);
-        Fraction operator-(double floatNumber);
-        Fraction operator/(double floatNumber);
+        Fraction operator*(double floatNumber) const;
+        Fraction operator+(double floatNumber) const;
+        Fraction operator-(double floatNumber) const;
+        Fraction operator/(double floatNumber) const;
 
         Fraction operator++(int dummy_flag);
         Fraction operator--(int dummy_flag);
