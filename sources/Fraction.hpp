@@ -5,6 +5,36 @@ namespace ariel
 
     using namespace std;
 
+    template <typename T>
+    bool isEqual(const T &a, const T &b)
+    {
+        return a == b;
+    }
+
+    template <typename T>
+    bool greaterEqual(const T &a, const T &b)
+    {
+        return a >= b;
+    }
+
+    template <typename T>
+    bool lessEqual(const T &a, const T &b)
+    {
+        return a <= b;
+    }
+
+    template <typename T>
+    bool lessThan(const T &a, const T &b)
+    {
+        return a < b;
+    }
+
+    template <typename T>
+    bool greaterThan(const T &a, const T &b)
+    {
+        return a > b;
+    }
+
     class Fraction
     {
     private:

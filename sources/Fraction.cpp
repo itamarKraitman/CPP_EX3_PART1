@@ -9,7 +9,7 @@ namespace ariel
 {
     Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator)
     {
-        if (numerator == 0)
+        if (denominator == 0)
         {
             throw logic_error("Dividing by zero");
         }
@@ -186,25 +186,115 @@ namespace ariel
 
     bool operator==(const Fraction &frac1, const Fraction &frac2)
     {
+        if (frac1.getDenominator() == frac2.getDenominator())
+        {
+            return frac1.getNumerator() == frac2.getNumerator();
+        }
+
         int lcm = findLcm(frac1, frac2);
-        return frac1.getNumerator() * lcm == frac2.getNumerator() * lcm ;
+        int firstFracLcmMultiply = frac1.getNumerator() * lcm / frac1.getDenominator();
+        int secondFracLcmMultiply = frac2.getNumerator() * lcm / frac2.getDenominator();
+
+        return (firstFracLcmMultiply == secondFracLcmMultiply);
     }
-    bool operator>=(const Fraction &frac1, const Fraction &frac2) { return (frac1.getNumerator() >= frac2.getNumerator()); }
-    bool operator<=(const Fraction &frac1, const Fraction &frac2) { return (frac1.getNumerator() <= frac2.getNumerator()); }
-    bool operator>(const Fraction &frac1, const Fraction &frac2) { return (frac1.getNumerator() > frac2.getNumerator()); }
-    bool operator<(const Fraction &frac1, const Fraction &frac2) { return (frac1.getNumerator() < frac2.getNumerator()); }
+    bool operator>=(const Fraction &frac1, const Fraction &frac2)
+    {
+        if (frac1.getDenominator() == frac2.getDenominator())
+        {
+            return frac1.getNumerator() >= frac2.getNumerator();
+        }
 
-    bool operator==(double floatNumber, const Fraction &frac1) { return (frac1.getNumerator() == floatNumber); }
-    bool operator>=(double floatNumber, const Fraction &frac1) { return (frac1.getNumerator() >= floatNumber); }
-    bool operator<=(double floatNumber, const Fraction &frac1) { return (frac1.getNumerator() <= floatNumber); }
-    bool operator>(double floatNumber, const Fraction &frac1) { return (frac1.getNumerator() > floatNumber); }
-    bool operator<(double floatNumber, const Fraction &frac1) { return (frac1.getNumerator() < floatNumber); }
+        int lcm = findLcm(frac1, frac2);
+        int firstFracLcmMultiply = frac1.getNumerator() * lcm / frac1.getDenominator();
+        int secondFracLcmMultiply = frac2.getNumerator() * lcm / frac2.getDenominator();
 
-    bool operator==(const Fraction &frac1, double floatNumber) { return (frac1.getNumerator() == floatNumber); }
-    bool operator>=(const Fraction &frac1, double floatNumber) { return (frac1.getNumerator() >= floatNumber); }
-    bool operator<=(const Fraction &frac1, double floatNumber) { return (frac1.getNumerator() <= floatNumber); }
-    bool operator>(const Fraction &frac1, double floatNumber) { return (frac1.getNumerator() < floatNumber); }
-    bool operator<(const Fraction &frac1, double floatNumber) { return (frac1.getNumerator() < floatNumber); }
+        return (firstFracLcmMultiply >= secondFracLcmMultiply);
+        
+    }
+    bool operator<=(const Fraction &frac1, const Fraction &frac2)
+    {
+        if (frac1.getDenominator() == frac2.getDenominator())
+        {
+            return frac1.getNumerator() <= frac2.getNumerator();
+        }
+
+        int lcm = findLcm(frac1, frac2);
+        int firstFracLcmMultiply = frac1.getNumerator() * lcm / frac1.getDenominator();
+        int secondFracLcmMultiply = frac2.getNumerator() * lcm / frac2.getDenominator();
+
+        return (firstFracLcmMultiply <= secondFracLcmMultiply);
+        
+    }
+    bool operator>(const Fraction &frac1, const Fraction &frac2)
+    {
+        if (frac1.getDenominator() == frac2.getDenominator())
+        {
+            return frac1.getNumerator() > frac2.getNumerator();
+        }
+
+        int lcm = findLcm(frac1, frac2);
+        int firstFracLcmMultiply = frac1.getNumerator() * lcm / frac1.getDenominator();
+        int secondFracLcmMultiply = frac2.getNumerator() * lcm / frac2.getDenominator();
+
+        return (firstFracLcmMultiply > secondFracLcmMultiply);
+        
+    }
+    bool operator<(const Fraction &frac1, const Fraction &frac2)
+    {
+        if (frac1.getDenominator() == frac2.getDenominator())
+        {
+            return frac1.getNumerator() < frac2.getNumerator();
+        }
+
+        int lcm = findLcm(frac1, frac2);
+        int firstFracLcmMultiply = frac1.getNumerator() * lcm / frac1.getDenominator();
+        int secondFracLcmMultiply = frac2.getNumerator() * lcm / frac2.getDenominator();
+
+        return (firstFracLcmMultiply < secondFracLcmMultiply);
+        
+    }
+
+    bool operator==(double floatNumber, const Fraction &frac1)
+    {
+        return Fraction(floatNumber) == frac1;
+    }
+    bool operator>=(double floatNumber, const Fraction &frac1)
+    {
+        return Fraction(floatNumber) >= frac1;
+    }
+    bool operator<=(double floatNumber, const Fraction &frac1)
+    {
+        return Fraction(floatNumber) <= frac1;
+    }
+    bool operator>(double floatNumber, const Fraction &frac1)
+    {
+        return Fraction(floatNumber) > frac1;
+    }
+    bool operator<(double floatNumber, const Fraction &frac1)
+    {
+        return Fraction(floatNumber) < frac1;
+    }
+
+    bool operator==(const Fraction &frac1, double floatNumber)
+    {
+        return frac1 == Fraction(floatNumber);
+    }
+    bool operator>=(const Fraction &frac1, double floatNumber)
+    {
+        return frac1 >= Fraction(floatNumber);
+    }
+    bool operator<=(const Fraction &frac1, double floatNumber)
+    {
+        return frac1 <= Fraction(floatNumber);
+    }
+    bool operator>(const Fraction &frac1, double floatNumber)
+    {
+        return frac1 > Fraction(floatNumber);
+    }
+    bool operator<(const Fraction &frac1, double floatNumber)
+    {
+        return frac1 < Fraction(floatNumber);
+    }
 
     std::ostream &operator<<(std::ostream &output, const Fraction &frac) { return (output << frac.getNumerator() << '/' << frac.getDenominator()); }
     std::istream &operator>>(std::istream &input, Fraction &frac)
