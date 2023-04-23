@@ -10,16 +10,14 @@ namespace ariel
     private:
         int numerator;
         int denominator;
-        int find_gcd() const;
-
-
+        int findGcd() const;
 
     public:
         Fraction(int numerator, int denominator);
         Fraction(double floatNumber);
         int getNumerator() const;
         int getDenominator() const;
-        void reduce_fraction();
+        void reduceFraction();
 
         // overloading +,-,*,/,==,>,<,<=,>=,++,--,<<,>>
         Fraction operator+(const Fraction &other) const;

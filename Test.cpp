@@ -53,6 +53,8 @@ TEST_CASE("Methods do not throw errors- fraction with fraction")
         CHECK_NOTHROW(a.operator*(b));
         CHECK_NOTHROW(a.operator++());
         CHECK_NOTHROW(a.operator--());
+        CHECK_NOTHROW(--a);
+        CHECK_NOTHROW(++a);
     }
 }
 
@@ -73,6 +75,9 @@ TEST_CASE("Methods do not throw errors- fraction with float")
         CHECK_NOTHROW(a.operator-(1.1));
         CHECK_NOTHROW(a.operator/(1.1));
         CHECK_NOTHROW(a.operator*(1.1));
+        CHECK_NOTHROW(1.1 * a);
+        CHECK_NOTHROW(1.1 + a);
+
     }
 }
 
@@ -105,6 +110,12 @@ TEST_CASE("Logic operatos works as expectd- float number and fraction")
     CHECK(a < Fraction(1, 2));
     CHECK(a > Fraction(1, 5));
     CHECK(a == 0.25);
+    Fraction b(6/5);
+    CHECK(a <= b);
+    CHECK(!(a >= b));
+    CHECK(!(a == b));
+    Fraction c(2, 8);
+    CHECK(a == c);
 }
 
 TEST_CASE("Negative numerator and denominator")
