@@ -165,10 +165,10 @@ TEST_CASE("Binary operators works as excpected")
     CHECK(c == Fraction(2671, 1000));
     c = a + b - 1;
     CHECK(c == Fraction(-1, 4));
-    a++;
+    a++; // returns 1/2 before apply ++
     CHECK(a == Fraction(1, 2));
-    --a;
-    CHECK(a == Fraction(-1, 2));
+    --a; // apply -- before return a
+    CHECK(a == Fraction(1, 2));
     
 }
 
@@ -178,12 +178,13 @@ TEST_CASE("<< operator works correctly")
     Fraction a(1, 2);
     output << a;
     CHECK(output.str() == "1/2");
-    output.clear();
+    output.str("");
     Fraction b(1, -2);
     output << b;
     CHECK(output.str() == "1/-2");
-    output.clear();
+    output.str("");
     Fraction c(-1, 2);
     output << c;
+    cout << c.getDenominator() << ", " << c.getNumerator() << endl;
     CHECK(output.str() == "-1/2");
 }

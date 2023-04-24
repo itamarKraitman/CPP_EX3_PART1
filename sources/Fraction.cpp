@@ -49,6 +49,7 @@ namespace ariel
     void Fraction::reduceFraction()
     {
         int gcd = findGcd();
+        // cout << gcd << endl;
         this->numerator /= gcd;
         this->denominator /= gcd;
     }
@@ -63,7 +64,7 @@ namespace ariel
             deno = nume % deno;
             nume = temp;
         }
-        return nume;
+        return abs(nume); // for sometimes returns negative number, eg -1 and 2
     }
 
     // overloading +,-,*,/,==,>,<,<=,>=,++,--,<<,>>
