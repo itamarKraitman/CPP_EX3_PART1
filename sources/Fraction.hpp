@@ -12,6 +12,7 @@ namespace ariel
         int findGcd() const;
 
     public:
+        Fraction();
         Fraction(int numerator, int denominator);
         Fraction(double floatNumber);
         int getNumerator() const;
