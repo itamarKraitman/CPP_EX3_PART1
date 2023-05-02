@@ -33,10 +33,5 @@ int main() {
     if (a > 1.1) cout << " a is bigger than 1.1" << endl;
     else cout << " a is smaller than 1.1" << endl;
 
-    Fraction frac;
-    cout << "enter frac" << endl;
-    cin >> frac;
-    cout << frac << endl;;
-
 
 }
