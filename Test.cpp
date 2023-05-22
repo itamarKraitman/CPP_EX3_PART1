@@ -32,7 +32,8 @@ TEST_CASE("Float number as input")
     CHECK_EQ(a, 1.5);
     Fraction b(3, 2);
     CHECK_EQ(a, b);
-    CHECK(a.getNumerator() == b.getNumerator() && a.getDenominator() == b.getDenominator());
+    CHECK(a.getNumerator() == b.getNumerator());
+    CHECK(a.getDenominator() == b.getDenominator());
     Fraction c(0.000001); // should be rounded up to 3 digits beyond decimal point (so, to 0) according README
     CHECK_EQ(c, 0);
 }
@@ -109,7 +110,8 @@ TEST_CASE("Logic operators work as expected- fraction and fraction")
         CHECK(!(a == b));
         CHECK(!(c == b));
         Fraction d(i, i + 1); // same as a
-        CHECK(a.getNumerator() == b.getNumerator() && a.getDenominator() == b.getDenominator());
+        CHECK(a.getNumerator() == b.getNumerator());
+        CHECK(a.getDenominator() == b.getDenominator());
         CHECK(a == d);
         CHECK(c > a);
         CHECK(!(a > b));
@@ -143,6 +145,9 @@ TEST_CASE("Negative numerator and denominator")
     Fraction d(5, -3); // 5/-3 == -5/3
     CHECK(c == d);
     CHECK(d < b);
+    CHECK(a < 2.215);
+    CHECK(c <= -1);
+    CHECK(a >= 0.878);
 }
 
 TEST_CASE("reduced and unreduced fractions are equal")
@@ -159,8 +164,12 @@ TEST_CASE("Binary operators works as excpected")
 {
     Fraction a(1, 2);
     Fraction b(1, 4);
+    float fNumber = 0.5;
     Fraction c = a + b;
     cout << c << endl;
+    CHECK_EQ(a + fNumber, Fraction(1, 1));
+    CHECK(a - fNumber == 0);
+    CHECK(a / fNumber == 1);
     CHECK(c == Fraction(3, 4));
     c = a - b;
     CHECK(c == Fraction(1, 4));
@@ -177,8 +186,13 @@ TEST_CASE("Binary operators works as excpected")
     CHECK(c == Fraction(2671, 1000));
     c = a + b - 1;
     CHECK(c == Fraction(-1, 4));
+    CHECK(c == 0.25);
     a++; // returns 1/2 before apply ++
     CHECK(a == Fraction(1, 2));
+    ++a; // apply ++ before return a
+    CHECK(a == Fraction(3, 2));
+    a--; // return a before apply --
+    CHECK(a == Fraction(3, 2));
     --a; // apply -- before return a
     CHECK(a == Fraction(1, 2));
 }
